@@ -11,7 +11,7 @@ const createBodySchema = {
   email: yup.string().required().email().trim().lowercase().max(256),
   password: yup.string().required().min(6).max(256),
 };
-const validateCreateBody = (
+const validateCreate = (
   req: Request,
   _: Response,
   next: NextFunction,
@@ -37,4 +37,4 @@ const authenticate = (req: Request, __: Response, next: NextFunction): void => {
   }
 };
 
-export { validateCreateBody, authenticate };
+export { validateCreate, authenticate };

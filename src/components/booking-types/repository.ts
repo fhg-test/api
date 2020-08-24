@@ -24,6 +24,12 @@ class Repository {
     return documents.map(transform);
   }
 
+  public static async isExisted(id: string): Promise<boolean> {
+    const document = await Model.findById(id).exec();
+
+    return !!document;
+  }
+
   /**
    * Bulk actions
    */

@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@boringcodes/utils": "*",
-    "@fhg-test/core": "^0.2.2",
-    "@fhg-test/rest": "^0.4.2",
+    "@fhg-test/core": "^0.3.0",
+    "@fhg-test/rest": "^0.5.0",
     "body-parser": "^1.18.3",
     "change-case": "^4.1.1",
     "connect-mongo": "^3.2.0",

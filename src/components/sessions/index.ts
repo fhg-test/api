@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { RESOURCE } from './constants';
-import { validateCreateBody } from './middleware';
+import { validateCreate } from './middleware';
 import { create, getById, get, del } from './controller';
 
 import { RouteOptions } from '..';
@@ -15,7 +15,7 @@ const routes = (_: RouteOptions): Router => {
 
   router.param('id', getById);
 
-  router.route('/').post(authenticate, validateCreateBody, create(passport));
+  router.route('/').post(authenticate, validateCreate, create(passport));
 
   router.route('/:id').get(authenticate, get).delete(authenticate, del);
 

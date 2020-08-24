@@ -66,18 +66,18 @@
     express "^4.17.1"
     http-status-codes "^1.3.2"
 
-"@fhg-test/core@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@fhg-test/core/-/core-0.2.2.tgz#6beba4cf3a7bd4d07c83a2e3782553bc21332fd1"
-  integrity sha512-+KIuuRmRtI/Un9UuB51S+FVjQv8wNIUo11LsDGEWn5mzrszjNDsoljoklD/e6UyDvw/h4KmWX3SgaIomY+U/gQ==
+"@fhg-test/core@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@fhg-test/core/-/core-0.3.0.tgz#8e35242e1091616cf6c5f08df25a7d0d384c0469"
+  integrity sha512-70aN1tgb6DbcjOypGJeRzSV3RJHCQOyEqzSW3F0Mg3l7aEHzAg6YoKqu/wxGR40KbYZC+OsF5ozbua7ngh0NGA==
 
-"@fhg-test/rest@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@fhg-test/rest/-/rest-0.4.2.tgz#a551913b9ec482ed933a9d0245007a9d7bca2476"
-  integrity sha512-W5IJv+U8+XnAilzeHV/YCJsn0gvu5yjSGUFkzCyMBqSghA+3zTgGAONu9szWc5oMcpopnUa9iiGwu+L1BqN46Q==
+"@fhg-test/rest@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@fhg-test/rest/-/rest-0.5.0.tgz#50d0e89c854bf3de1ad80298f9c416ef421426a1"
+  integrity sha512-oKrAX3I6NjljViShMMcUHrsGqKw00YvR0v8anvxXs+iO+4luQUPtDqgCtz4DseVUpVcOzD9+2YbP7ERCxrSylg==
   dependencies:
     "@boringcodes/utils" "^0.3.1"
-    "@fhg-test/core" "^0.2.2"
+    "@fhg-test/core" "^0.3.0"
     isomorphic-fetch "^2.2.1"
     qs "^6.9.4"
 
