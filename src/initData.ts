@@ -1,10 +1,20 @@
 import { capitalCase, sentenceCase } from 'change-case';
-import { Action, Entity, User, Group, Permission } from '@fhg-test/core';
+import {
+  Action,
+  Entity,
+  User,
+  Group,
+  Permission,
+  BookingStatus,
+  BookingType,
+} from '@fhg-test/core';
 import logger from '@boringcodes/utils/logger';
 
 import GroupsRepository from './components/groups/repository';
 import PermissionsRepository from './components/permissions/repository';
 import UsersRepository from './components/users/repository';
+import BookingStatusesRepository from './components/booking-statuses/repository';
+import BookingTypesRepository from './components/booking-types/repository';
 
 const actions: Action[] = [
   Action.Create,
@@ -79,6 +89,36 @@ const users: User[] = [
   },
 ];
 
+const bookingStatuses: BookingStatus[] = [
+  {
+    id: 'pending-review',
+    name: 'Pending Review',
+  },
+  {
+    id: 'approved',
+    name: 'Approved',
+  },
+  {
+    id: 'rejected',
+    name: 'Rejected',
+  },
+];
+
+const bookingTypes: BookingType[] = [
+  {
+    id: 'health-talk',
+    name: 'Health Talk',
+  },
+  {
+    id: 'wellness-events',
+    name: 'Wellness Events',
+  },
+  {
+    id: 'fitness-activities',
+    name: 'Fitness Activities',
+  },
+];
+
 const initData = async (): Promise<void> => {
   await Promise.all([
     PermissionsRepository.initData(
@@ -86,6 +126,12 @@ const initData = async (): Promise<void> => {
     ),
     GroupsRepository.initData(groups.map((o) => ({ _id: o.id, ...o }))),
     UsersRepository.initData(users.map((o) => ({ _id: o.id, ...o }))),
+    BookingStatusesRepository.initData(
+      bookingStatuses.map((o) => ({ _id: o.id, ...o })),
+    ),
+    BookingTypesRepository.initData(
+      bookingTypes.map((o) => ({ _id: o.id, ...o })),
+    ),
   ]);
 
   logger.info('> Default data initialized');
