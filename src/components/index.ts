@@ -1,18 +1,19 @@
 import { Router } from 'express';
 
-// TODO: import components for registering to router
-// import things from './components/things';
+import sessions from './sessions';
+import users from './users';
+import user from './user';
 
 interface RouteOptions {
   readonly dev: boolean;
 }
 
-// eslint-disable-next-line
-const routes = (options: RouteOptions) => {
+const routes = (options: RouteOptions): Router => {
   const router = Router();
 
-  // TODO: register components to router
-  // router.use(things.path, things.routes(options));
+  router.use(sessions.path, sessions.routes(options));
+  router.use(users.path, users.routes(options));
+  router.use(user.path, user.routes(options));
 
   return router;
 };

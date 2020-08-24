@@ -2,21 +2,20 @@ import { MyError } from '@boringcodes/utils/error';
 import errorHandler from '@boringcodes/utils/errorHandler';
 import logger from '@boringcodes/utils/logger';
 
+import mongo from './db/mongo';
+import initData from './initData';
 import app from './app';
 
 // declare env vars
-const host =
-  process.env.HOST !== null && process.env.HOST !== undefined
-    ? process.env.HOST
-    : 'localhost';
-const port =
-  process.env.PORT !== null && process.env.PORT !== undefined
-    ? +process.env.PORT
-    : 9000;
+const host = process.env.HOST ?? 'localhost';
+const port = process.env.PORT ? +process.env.PORT : 5000;
+
+// connect mongo
+mongo.connect(initData);
 
 // start app
 app.listen(port, host, (err: Error) => {
-  if (err !== null && err !== undefined) {
+  if (err) {
     throw err;
   }
 
