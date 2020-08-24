@@ -4,8 +4,9 @@ import { RESOURCE } from './constants';
 
 import { RouteOptions } from '..';
 import { authenticate } from '../sessions/middleware';
-import sessions from '../sessions';
 import users from '../users';
+import sessions from '../sessions';
+import rbac from '../rbac';
 
 const path = `/${RESOURCE}`;
 
@@ -22,6 +23,10 @@ const routes = (_: RouteOptions): Router => {
 
   router.route(`${sessions.path}/current`).all(authenticate, (req, res) => {
     res.redirect(307, `${sessions.path}/${req.sessionID ?? ''}`);
+  });
+
+  router.route(rbac.path).get(authenticate, (req, res) => {
+    res.redirect(307, `${rbac.path}/${(req.user as string) ?? ''}`);
   });
 
   return router;

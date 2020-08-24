@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import bookingStatuses from './booking-statuses';
 import bookingTypes from './booking-types';
+import rbac from './rbac';
 import sessions from './sessions';
 import user from './user';
 import users from './users';
@@ -15,6 +16,7 @@ const routes = (options: RouteOptions): Router => {
 
   router.use(bookingStatuses.path, bookingStatuses.routes(options));
   router.use(bookingTypes.path, bookingTypes.routes(options));
+  router.use(rbac.path, rbac.routes(options));
   router.use(sessions.path, sessions.routes(options));
   router.use(user.path, user.routes(options));
   router.use(users.path, users.routes(options));

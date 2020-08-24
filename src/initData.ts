@@ -15,6 +15,7 @@ import PermissionsRepository from './components/permissions/repository';
 import UsersRepository from './components/users/repository';
 import BookingStatusesRepository from './components/booking-statuses/repository';
 import BookingTypesRepository from './components/booking-types/repository';
+import RBACRepository from './components/rbac/repository';
 
 const actions: Action[] = [
   Action.Create,
@@ -119,6 +120,25 @@ const bookingTypes: BookingType[] = [
   },
 ];
 
+const initRBAC = async (): Promise<void> => {
+  const users = await UsersRepository.list();
+  const rbacs = await Promise.all(
+    users.map(async (user) => {
+      const groups = await GroupsRepository.listByIds(user.groups as string[]);
+
+      return {
+        id: user.id,
+        permissions: groups.reduce(
+          (prev, group) => [...prev, ...(group.permissions as string[])],
+          [] as string[],
+        ),
+      };
+    }),
+  );
+
+  await RBACRepository.initData(rbacs.map((o) => ({ _id: o.id, ...o })));
+};
+
 const initData = async (): Promise<void> => {
   await Promise.all([
     PermissionsRepository.initData(
@@ -133,6 +153,7 @@ const initData = async (): Promise<void> => {
       bookingTypes.map((o) => ({ _id: o.id, ...o })),
     ),
   ]);
+  await initRBAC();
 
   logger.info('> Default data initialized');
 };

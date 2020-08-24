@@ -17,6 +17,7 @@ class Repository {
   /**
    * Bulk actions
    */
+
   public static async initData(objects: Permission[]): Promise<Permission[]> {
     return await Promise.all(
       objects.map(async (object) => {

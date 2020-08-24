@@ -27,6 +27,7 @@ class Repository {
   /**
    * Bulk actions
    */
+
   public static async initData(objects: BookingType[]): Promise<BookingType[]> {
     return await Promise.all(
       objects.map(async (object) => {

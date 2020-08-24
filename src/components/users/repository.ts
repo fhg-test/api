@@ -18,6 +18,12 @@ class Repository {
    * Read
    */
 
+  public static async list(): Promise<User[]> {
+    const documents = await Model.find().exec();
+
+    return documents.map(transform);
+  }
+
   public static async get(id: string): Promise<User | null> {
     const document = await Model.findById(id).exec();
     if (!document) {
@@ -44,6 +50,7 @@ class Repository {
   /**
    * Bulk actions
    */
+
   public static async initData(objects: User[]): Promise<User[]> {
     return await Promise.all(
       objects.map(async (object) => {

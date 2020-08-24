@@ -3,6 +3,10 @@ import { Session } from '@fhg-test/core';
 import Model, { Document } from './model';
 
 class Repository {
+  /**
+   * Read
+   */
+
   public static async get(id: string): Promise<Session | null> {
     const document = await Model.findById(id).exec();
     if (!document) {

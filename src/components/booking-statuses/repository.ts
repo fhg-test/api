@@ -27,6 +27,7 @@ class Repository {
   /**
    * Bulk actions
    */
+
   public static async initData(
     objects: BookingStatus[],
   ): Promise<BookingStatus[]> {

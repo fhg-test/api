@@ -15,8 +15,21 @@ class Repository {
   }
 
   /**
+   * Read
+   */
+
+  public static async listByIds(ids: string[]): Promise<Group[]> {
+    const documents = await Model.find({
+      _id: { $in: ids },
+    }).exec();
+
+    return documents.map(transform);
+  }
+
+  /**
    * Bulk actions
    */
+
   public static async initData(objects: Group[]): Promise<Group[]> {
     return await Promise.all(
       objects.map(async (object) => {
