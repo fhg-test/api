@@ -11,6 +11,7 @@ import {
   handleErrors,
 } from '@boringcodes/utils/express';
 
+import config from './config';
 import passport from './components/sessions/passport';
 import components from './components';
 
@@ -23,15 +24,8 @@ const MongoStore = connectMongo(session);
 app.use(morgan(dev ? 'dev' : 'common'));
 app.use(
   session({
-    name: 'fhg-test.sid',
-    secret: 'fhg-test',
-    resave: false,
-    saveUninitialized: true,
+    ...config.session,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    proxy: true,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    },
   }),
 );
 app.use(passport.initialize());

@@ -2,24 +2,21 @@ import { MyError } from '@boringcodes/utils/error';
 import errorHandler from '@boringcodes/utils/errorHandler';
 import logger from '@boringcodes/utils/logger';
 
+import config from './config';
 import mongo from './db/mongo';
 import initData from './initData';
 import app from './app';
-
-// declare env vars
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? +process.env.PORT : 5000;
 
 // connect mongo
 mongo.connect(initData);
 
 // start app
-app.listen(port, host, (err: Error) => {
+app.listen(config.port, config.host, (err: Error) => {
   if (err) {
     throw err;
   }
 
-  logger.info(`> App started at http://${host}:${port}`);
+  logger.info(`> App started at http://${config.host}:${config.port}`);
 });
 
 // handle unhandled promise
