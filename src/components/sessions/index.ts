@@ -15,7 +15,7 @@ const routes = (_: RouteOptions): Router => {
 
   router.param('id', getById);
 
-  router.route('/').post(authenticate, validateCreate, create(passport));
+  router.route('/').post(validateCreate, create(passport));
 
   router.route('/:id').get(authenticate, get).delete(authenticate, del);
 
