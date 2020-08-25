@@ -25,7 +25,7 @@ const list = async (
   try {
     const isAuthorized = await RBACRepository.authorize(
       req.user as string,
-      `${Entity.Booking}.${Action.Update}`,
+      `${Entity.Booking}:${Action.Update}`,
     );
     const objects = isAuthorized
       ? await Repository.list()
