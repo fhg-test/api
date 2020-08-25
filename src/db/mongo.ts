@@ -7,7 +7,7 @@ import mongoConfig from '../config/mongo';
 
 const uri =
   mongoConfig.user && mongoConfig.password
-    ? `${mongoConfig.user}:${mongoConfig.password}@mongodb://${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.dbName}`
+    ? `mongodb://${mongoConfig.user}:${mongoConfig.password}@${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.dbName}`
     : `mongodb://${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.dbName}`;
 
 const connect = (cb = () => {}): void => {
