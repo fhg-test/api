@@ -25,6 +25,8 @@ app.use(morgan(dev ? 'dev' : 'common'));
 app.use(
   session({
     ...config.session,
+    resave: false,
+    saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   }),
 );
