@@ -5,11 +5,12 @@ import {
   INTERNAL_SERVER_ERROR,
 } from 'http-status-codes';
 import { Types } from 'mongoose';
-import { Booking } from '@fhg-test/core';
+import { Entity, Action, Booking } from '@fhg-test/core';
 import { HttpError } from '@boringcodes/utils/error';
 
 import { ENTITY } from './constants';
 import Repository from './repository';
+import RBACRepository from '../rbac/repository';
 
 type MyRequest = Request & {
   readonly myBody: any;
@@ -17,12 +18,18 @@ type MyRequest = Request & {
 };
 
 const list = async (
-  _: Request,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const objects = await Repository.list();
+    const isAuthorized = await RBACRepository.authorize(
+      req.user as string,
+      `${Entity.Booking}.${Action.Update}`,
+    );
+    const objects = isAuthorized
+      ? await Repository.list()
+      : await Repository.listByCreatedBy(req.user as string);
 
     res.send(objects);
   } catch (err) {

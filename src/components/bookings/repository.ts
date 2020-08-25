@@ -24,6 +24,12 @@ class Repository {
     return documents.map(transform);
   }
 
+  public static async listByCreatedBy(createdBy: string): Promise<Booking[]> {
+    const documents = await Model.find({ createdBy });
+
+    return documents.map(transform);
+  }
+
   public static async get(id: string): Promise<Booking | null> {
     const document = await Model.findById(id).exec();
     if (!document) {
