@@ -39,6 +39,7 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "source-map-support": "^0.5.19",
     "yup": "^0.26.6"
   },
   "devDependencies": {
