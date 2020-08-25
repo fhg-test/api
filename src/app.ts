@@ -37,7 +37,7 @@ app.use(bodyParser.json());
 app.use(health());
 
 // plug components
-app.use(components({ dev }));
+app.use('/api', components({ dev }));
 
 // handle errors
 app.use(handleNotFound);
